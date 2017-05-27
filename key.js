@@ -159,18 +159,3 @@ var Key = (function() {
 
 	return Methods;
 })();
-
-Key.trigger('k').do(function(e) {
-
-	console.log('trigger k', Key.isHolding('v'));
-});
-
-Key.release('m').do(function(e) {
-
-	console.log('release m');
-});
-
-Key.hold('h').do(function() {
-
-	console.log('hold h');
-}).interval(1000);
