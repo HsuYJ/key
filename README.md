@@ -1,5 +1,5 @@
 # key.js
-A tiny JavaScript library for keyboard key maping.
+A tiny JavaScript library let you bind function to keyboard.
 
 ## About key values
 Key.js is using the API KeyboardEvent.key to detect which key is pressing/releasing.<br />
