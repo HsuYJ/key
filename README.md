@@ -4,8 +4,8 @@ A tiny JavaScript library for keyboard key maping.
 ## About key values
 Key.js is using the API KeyboardEvent.key to detect which key is pressing/releasing.
 see:
-[KeyboardEvent.key on MDN](https://developer.mozilla.org/zh-TW/docs/Web/API/KeyboardEvent/key)
-[Key Values on MDN](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values)
+KeyboardEvent.key on [MDN](https://developer.mozilla.org/zh-TW/docs/Web/API/KeyboardEvent/key)
+Key Values on [MDN](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values)
 
 ## Usage
 ### Include key.js
