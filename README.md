@@ -2,9 +2,9 @@
 A tiny JavaScript library for keyboard key maping.
 
 ## About key values
-Key.js is using the API KeyboardEvent.key to detect which key is pressing/releasing.
-see:
-KeyboardEvent.key on [MDN](https://developer.mozilla.org/zh-TW/docs/Web/API/KeyboardEvent/key)
+Key.js is using the API KeyboardEvent.key to detect which key is pressing/releasing.<br />
+See:<br />
+KeyboardEvent.key on [MDN](https://developer.mozilla.org/zh-TW/docs/Web/API/KeyboardEvent/key)<br />
 Key Values on [MDN](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values)
 
 ## Usage
@@ -35,7 +35,7 @@ Key.hold('h').do(function() {
 });
 ```
 
-The default value of the interval is one frame.
+The default value of the interval is one frame.(1000ms / 60, ~17ms)<br />
 To change the value of interval, use following method:
 
 ```javascript
@@ -59,7 +59,6 @@ Key.release('r').do(function(e) {
 
 ```javascript
 Key.unbind('t');
-```
 ```
 
 ### Key.isHolding(KEY)
