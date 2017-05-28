@@ -3,6 +3,8 @@ var Key = (function() {
 	var Triggers = {};
 	var Holds = {};
 	var Releases = {};
+	var Combos = {};
+	var ComboNumber = 0;
 	var HoldingKeys = {};
 
 	function KeyEvent(KEY) {
@@ -65,6 +67,42 @@ var Key = (function() {
 	Release.prototype = Object.create(KeyEvent.prototype);
 	Release.prototype.constructor = Release;
 
+	function Combo(KEY, KEYS) {
+
+		var keys = [];
+
+		for (var i = 0, l = KEYS.length; i < l; i++) {
+			keys.push(KEYS[i]);
+		}
+
+		ComboNumber++;
+		this.keys = keys;
+		this.holder = Combos;
+		KeyEvent.call(this, KEY);
+	}
+
+	Combo.prototype = Object.create(KeyEvent.prototype);
+	Combo.prototype.constructor = Combo;
+	Combo.prototype.unbind = function() {
+
+		KeyEvent.prototype.unbind.call(this);
+		ComboNumber--;
+	};
+	Combo.prototype.isTrigger = function() {
+
+		var keys = this.keys;
+		var isTrigger = true;
+
+		for (var i = keys.length - 1; i >= 0; i--) {
+			if (!HoldingKeys[keys[i]]) {
+				isTrigger = false;
+				break;
+			}
+		}
+
+		return isTrigger;
+	};
+
 	function Main() {
 
 		window.addEventListener('keydown', function(e) {
@@ -88,6 +126,16 @@ var Key = (function() {
 
 				act();
 				hold.isHolding = setInterval(act, hold.timeInterval);
+			}
+
+			if (ComboNumber) {
+				for (var comboKey in Combos) {
+					var combo = Combos[comboKey];
+
+					if (combo.isTrigger()) {
+						combo.act(e);
+					}
+				}
 			}
 		});
 
@@ -154,6 +202,19 @@ var Key = (function() {
 			}
 
 			return release;
+		},
+
+		combo: function() {
+
+			var keys = arguments;
+			var key = Array.prototype.join.call(keys, '');
+			var combo = Combos[key];
+
+			if (!combo) {
+				combo = new Combo(key, keys);
+			}
+
+			return combo;
 		}
 	};
 
